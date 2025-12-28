@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siqi Li</title>
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --primary-color: #2c3e50;
+            /* Dark blue/grey for headers */
+            --secondary-color: #3498db;
+            /* Blue for links */
+            --text-color: #333;
+            /* Standard text gray */
+            --bg-color: #fcfcfc;
+            /* Very light gray background */
+            --section-spacing: 60px;
+            /* Space between major sections */
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Main container to center everything */
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: var(--primary-color);
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        h2 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-top: var(--section-spacing);
+        }
+
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- SECTION 1: INTRO --- */
+        .intro-section {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* The slot for your profile picture */
+        .profile-photo-slot {
+            flex: 0 0 200px;
+            /* Fixed width for photo area */
+            height: 200px;
+            background-color: #e0e0e0;
+            /* Placeholder gray */
+            border-radius: 50%;
+            /* Makes it circular */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border: 3px solid white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Actual image tag styling */
+        .profile-photo-slot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .intro-text {
+            flex: 1;
+        }
+
+        /* --- SECTION 2: PUBLICATIONS --- */
+        .pub-item {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 20px;
+        }
+
+        .pub-image-slot {
+            /* Changed width from 120px to 200px */
+            flex: 0 0 200px;
+            /* Changed height from 90px to 140px */
+            height: 140px;
+
+            background-color: #eee;
+            margin-right: 25px;
+            /* Added slightly more spacing */
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+            /* Added a subtle border for definition */
+        }
+
+        .pub-image-slot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        }
+
+        .pub-details {
+            flex: 1;
+        }
+
+        .pub-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .pub-journal {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        /* Styles for the small academic links (PDF, DOI, Code) */
+        .pub-links a {
+            display: inline-block;
+            font-size: 0.85rem;
+            padding: 2px 8px;
+            border: 1px solid var(--secondary-color);
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+
+        .pub-links a:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+        }
+
+        /* --- SECTIONS 3 & 4: EXPERIENCE & AWARDS --- */
+        .timeline-list,
+        .awards-list {
+            padding-left: 20px;
+        }
+
+        .timeline-list li,
+        .awards-list li {
+            margin-bottom: 15px;
+        }
+
+        .role-title {
+            font-weight: bold;
+        }
+
+        .role-date {
+            color: #888;
+            font-size: 0.9rem;
+            display: block;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 600px) {
+            .intro-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .pub-item {
+                flex-direction: column;
+            }
+
+            .pub-image-slot {
+                margin-bottom: 10px;
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        /* --- Highlight Class for Best Papers --- */
+        .pub-item.best-paper {
+            background-color: #fffbf0;
+            /* Very light gold background */
+            border: 1px solid #ffeeba;
+            /* Golden border */
+            border-left: 5px solid #ffc107;
+            /* Thicker accent on the left */
+            padding: 15px;
+            /* Extra space inside */
+            border-radius: 5px;
+            /* Rounded corners */
+            position: relative;
+            /* Helps with alignment */
+        }
+
+        /* The badge text style */
+        .award-badge {
+            display: inline-block;
+            background-color: #ffc107;
+            /* Gold color */
+            color: #4a3b00;
+            /* Dark text for contrast */
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            /* Space between badge and title */
+        }
+
+        .pub-authors {
+            color: #444;
+            /* Dark grey, distinct from the black title */
+            font-size: 0.95rem;
+            /* Slightly smaller than the body text */
+            margin-bottom: 4px;
+            /* Small space before the journal name */
+            line-height: 1.4;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <section class="intro-section">
+            <div class="profile-photo-slot">
+                <img src="data/avatar.jpg" alt="My Profile Photo">
+            </div>
+            <div class="intro-text">
+                <h1>Siqi Li</h1>
+                <p>
+                    I am currently a 3rd year PhD student under the supervision of <a
+                        href="https://songpenghit.github.io/">Prof. Peng Song</a> at Singapore University of Technology
+                    and Design (SUTD). My research cross <b>AI and Computer Graphics</b>,
+                    especially <b>Agents for Generative tasks</b>. Prior to SUTD, I worked as a researcher at BMW Group
+                    Innovation Lab where I researched on rendering and digital human, and prior to that I worked at
+                    Tencent Timi Studio as a game developer. I obtained my M.Sc. in Computer Science from NUAA in 2021.
+                </p>
+                <p>
+                    ✉️ <a href="mailto:siqi_li@mymail.sutd.edu.sg">Mail</a> |
+                    🔗 <a href="https://github.com/Siqi-MarvelLi">GitHub</a> |
+                    🔗 <a href="https://orcid.org/0009-0008-6911-8214">ORCID</a> |
+                    🔗 <a href="https://www.linkedin.com/in/siqi-li-12a7b9298/">LinkedIn</a>
+                </p>
+            </div>
+        </section>
+
+
+        <section>
+            <h2>Publications</h2>
+
+            <div class="pub-item">
+                <div class="pub-image-slot">
+                    <img src="https://sutd-cgl.github.io/supp/Publication/images/2025-SMI-ConformableMechanism.jpg"
+                        alt="Conformable Mechanisms on Freeform Surfaces">
+                </div>
+                <div class="pub-details">
+                    <div class="pub-title">Conformable Mechanisms on Freeform Surfaces</div>
+                    <span class="award-badge">🏆 Best Paper Award</span>
+                    <div class="pub-authors">
+                        <strong>Siqi Li</strong>, Haoyu Tang, Peng Song, Bailin Deng, and Jianmin Zheng
+                    </div>
+                    <div class="pub-journal">Computers & Graphics (Proc. of Shape Modeling International), 2025</div>
+                    <div class="pub-links">
+                        <a
+                            href="https://sutd-cgl.github.io/supp/Publication/projects/2025-SMI-ConformableMechanism/index.html">Home
+                            Page</a>
+                        <a
+                            href="https://sutd-cgl.github.io/supp/Publication/papers/2025-SMI-ConformableMechanism.pdf">Paper</a>
+                        <a href="https://youtu.be/nutUilwK4PM">Video</a>
+                        <a href="https://github.com/Siqi-MarvelLi/ConformableMechanism">Code</a>
+                        <a href="https://www.sciencedirect.com/science/article/pii/S0097849325002006">ScienceDirect</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pub-item">
+                <div class="pub-image-slot">
+                    <img src="https://sutd-cgl.github.io/supp/Publication/images/2024-SIGAsia-mpcMech.jpg" alt="mpcMech: Multi-Point Conjugation Mechanisms
+">
+                </div>
+                <div class="pub-details">
+                    <div class="pub-title">mpcMech: Multi-Point Conjugation Mechanisms
+                    </div>
+                    <div class="pub-authors">
+                        Ke Chen, <strong>Siqi Li</strong>, Peng Song, Jianmin Zheng, and Ligang Liu
+                    </div>
+                    <div class="pub-journal">ACM Transactions on Graphics (Proc. of SIGGRAPH Asia), 2024</div>
+                    <div class="pub-links">
+                        <a href="https://sutd-cgl.github.io/supp/Publication/projects/2024-SIGAsia-mpcMech/index.html">Home
+                            Page</a>
+                        <a href="https://sutd-cgl.github.io/supp/Publication/papers/2024-SIGAsia-mpcMech.pdf">Paper</a>
+                        <a href="https://youtu.be/diFRJ4a3WzI">Video</a>
+                        <a href="https://dl.acm.org/doi/10.1145/3687770">ACM Portal</a>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <section>
+            <h2>Experience</h2>
+            <ul class="timeline-list">
+                <li>
+                    <span class="role-title">Ph.D. in Computer Graphics, SUTD</span>
+                    <span class="role-date">2023 - Present</span>
+                </li>
+                <li>
+                    <span class="role-title">Researcher, BMW Group</span>
+                    <span class="role-date">2022 - 2023</span>
+                    Research about high precision vehicle rendering on Mobile devices;<br>
+                    Research about learning based digital human driven.
+                </li>
+                <li>
+                    <span class="role-title">Game Developer, Tencent Timi Studio</span>
+                    <span class="role-date">2020-2022</span>
+                </li>
+            </ul>
+        </section>
+
+
+        <section>
+            <h2>Honors & Awards</h2>
+            <ul class="awards-list">
+                <li><strong>Best Paper Award</strong>, Shape Modeling International, 2025.</li>
+                <li><strong>SUTD Ph.D. Fellowship</strong>, SUTD, 2023.</li>
+                <li><strong>ACM/ICPC East Continent Final Silver Medal</strong>, 2019.</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer style="text-align: center; font-size: 0.8rem; color: #888; margin-top: 40px;">
+        © 2024 Your Name. Hosted on GitHub Pages.
+    </footer>
+
+</body>
+
+</html>
