@@ -74,19 +74,25 @@
 
         /* The slot for your profile picture */
         .profile-photo-slot {
-            flex: 0 0 200px;
-            /* Fixed width for photo area */
+            /* We use explicit width/height instead of flex-basis to prevent squeezing */
+            width: 200px;
             height: 200px;
+
+            /* Prevent the flex container from resizing it */
+            flex-shrink: 0;
+
             background-color: #e0e0e0;
-            /* Placeholder gray */
             border-radius: 50%;
-            /* Makes it circular */
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
             border: 3px solid white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+            /* Center the circle itself if the parent aligns differently */
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* Actual image tag styling */
@@ -191,6 +197,11 @@
                 text-align: center;
             }
 
+            /* Add this to add space below the photo on mobile */
+            .profile-photo-slot {
+                margin-bottom: 20px;
+            }
+
             .pub-item {
                 flex-direction: column;
             }
@@ -257,7 +268,7 @@
             <div class="intro-text">
                 <h1>Siqi Li</h1>
                 <p>
-                    I am currently a 3rd year PhD student under the supervision of <a
+                    I am currently a 3rd year PhD candidate under the supervision of <a
                         href="https://songpenghit.github.io/">Prof. Peng Song</a> at Singapore University of Technology
                     and Design (SUTD). My research cross <b>AI and Computer Graphics</b>,
                     especially <b>Agents for Generative tasks</b>. Prior to SUTD, I worked as a researcher at BMW Group
@@ -359,10 +370,6 @@
         </section>
 
     </main>
-
-    <footer style="text-align: center; font-size: 0.8rem; color: #888; margin-top: 40px;">
-        © 2024 Your Name. Hosted on GitHub Pages.
-    </footer>
 
 </body>
 
